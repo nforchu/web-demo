@@ -1,0 +1,59 @@
+body {
+	padding: 0;
+	margin: 0;
+	position: relative;
+}
+
+#header {
+	background : #7CB9E8;
+	padding: 5px;
+	color: #2F4F4F;
+}
+
+ul.navigation {
+	margin: 10px 0 5px  0;
+	padding:0;
+	list-style: none;
+}
+
+ul.navigation li {
+	display: inline;
+	padding: 5px;
+}
+
+ul.navigation li.first {
+	border-right: 1px solid gray;
+}
+
+ol.contact-list {
+}
+
+ol.contact-list li{
+	
+}
+
+ol.contact-list li.odd{
+	background : #DCDCDC;
+}
+
+#edit-bucket.show {
+	margin: 0;
+	padding: 20px;
+	width: 100%;
+	background-color: rgba(0,0,0,0.5);
+	position: fixed;
+	z-index: 100;
+	top: 75px;
+	display: block;
+}
+
+#edit-bucket.hide {
+	z-index: -100;
+	display: none;
+}
+
+#edit-form {
+	padding: 100px 0;
+	background: white;
+}
+
