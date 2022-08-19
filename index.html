@@ -47,6 +47,16 @@
 			<li class="p-3"><a href="add.html">Add new contact</a></li>
 		</ul>
 		
+		<div class="p-3">
+			<input type="search" name="search" onkeyup="filterContacts(event)"/>
+			Desplay 
+			<select onchange="changeDisplaySize(event)">
+				<option value="all">All</option>
+				<option value="2">2</option>
+				<option value="5">5</option>
+				<option value="10">10</option>
+			</select>
+		</div>
 		<div id="contacts-bucket" class="container-fluid">			
 			
 		</div>

@@ -5,6 +5,7 @@ class Contact {
 	phoneNumber;
 }
 let contacts = [];
+let displaySize = 50;
 
 function initializeStorage(){
 	let myContacts = JSON.parse(localStorage.getItem('_myContacts'));	
@@ -13,7 +14,7 @@ function initializeStorage(){
 		return;
 	}
 	contacts = myContacts;
-	listContacts();
+	listContacts(displaySize, myContacts);
 }
 
 function addContact(){
@@ -43,18 +44,25 @@ function showNotification(outcome, message){
 	}, 5000);
 }
 
-function listContacts() {
-	let myContacts = JSON.parse(localStorage.getItem('_myContacts'));
+function listContacts(size, myContacts) {
 	let contactBucket = document.getElementById("contacts-bucket");
+	contactBucket.innerHTML = '';
 	if (myContacts instanceof Array && contactBucket!=null) {
+
+		if(size <= myContacts.length) {
+			myContacts = myContacts.slice(0, size);			
+	  }
+
 		let orderedList = document.createElement('ol');
 		orderedList.classList.add('contact-list', 'container-fluid');
+
 		for (let i = 0; i < myContacts.length; i++) {
 			let listItem = createContactItem(myContacts[i]);
 			let itemClass = i%2 > 0 ? 'even' : 'odd';
 			listItem.classList.add(itemClass);
 			orderedList.appendChild(listItem);
 		}
+
 		contactBucket.appendChild(orderedList);
 	}
 }
@@ -157,4 +165,17 @@ function deleteContact(item) {
 function removeFromView(id){
 	let contactToRemove = document.getElementById(`contact-${id}`);
 	contactToRemove.remove();
+}
+
+function changeDisplaySize(event) {
+	let size = event.target.value;
+	listContacts(size, contacts);
+}
+
+function filterContacts(event){
+	const searchText =  event.target.value.toLowerCase();
+	const filteredContacts = contacts.filter(
+		(c) => c.name.toLowerCase().includes(searchText)
+	);
+	listContacts(displaySize, filteredContacts);
 }
